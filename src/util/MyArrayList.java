@@ -44,12 +44,13 @@ public class MyArrayList<E> implements MyList<E>{
     }
 
     @Override
-    public void add(E element) {
+    public boolean add(E element) {
         if (size == elementData.length)
             elementData = grow();
         elementData[size] = element;
         size++;
         checkOf();
+        return true;
     }
     @Override
     public void add(int index, E element) {
@@ -57,6 +58,7 @@ public class MyArrayList<E> implements MyList<E>{
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         if (size == elementData.length)
             elementData = grow();
+        elementData = MyArray.copyOf(index, elementData);
         elementData[index] = element;
         size++;
         checkOf();
@@ -64,13 +66,12 @@ public class MyArrayList<E> implements MyList<E>{
 
     private Object[] grow() {
         if (elementData.length > 0 || elementData != EMPTY_ELEMENTDATA) {
-            int newCapacity = elementData.length * 2;
+            int newCapacity = elementData.length + (elementData.length >> 1) + 1;
             return elementData = MyArray.copyOf(elementData, newCapacity);
         } else {
             return elementData = new Object[DEFAULT_CAPACITY];
         }
     }
-
 
 
     @Override
