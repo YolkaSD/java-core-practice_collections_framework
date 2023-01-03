@@ -76,7 +76,6 @@ public class MyArrayList<E> implements MyList<E>{
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         E oldValue = elementData(index);
         elementData[index] = element;
-        checkOf();
         return oldValue;
     }
 
@@ -97,7 +96,7 @@ public class MyArrayList<E> implements MyList<E>{
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         E oldValue = elementData(index);
         elementData = MyArray.copyNegativeOffset(elementData, index);
-        checkOf();
+        size--;
         return oldValue;
     }
 
