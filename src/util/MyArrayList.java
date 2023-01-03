@@ -76,8 +76,7 @@ public class MyArrayList<E> implements MyList<E>{
     public E set(int index, E element) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
-        @SuppressWarnings("unchecked")
-        E oldValue = (E) elementData[index];
+        E oldValue = elementData(index);
         elementData[index] = element;
         checkOf();
         return oldValue;
@@ -85,7 +84,13 @@ public class MyArrayList<E> implements MyList<E>{
 
     @Override
     public E get(int index) {
-        return null;
+        if (index >= size || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        return elementData(index);
+    }
+    @SuppressWarnings("unchecked")
+    private E elementData(int index) {
+        return (E) elementData[index];
     }
 
     @Override
