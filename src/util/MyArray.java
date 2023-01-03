@@ -17,6 +17,17 @@ public class MyArray {
                 copy[i] = oldElementData[j];
         }
         return copy;
+
+    }public static Object[] copyNegativeOffset(Object[] oldElementData, int index) {
+        int length = oldElementData.length;
+        Object[] copy = new Object[length];
+        for (int i = 0, j = 0; j < length; i++, j++) {
+            if (j != index)
+                copy[i] = oldElementData[j];
+            else
+                i--;
+        }
+        return copy;
     }
 
 }

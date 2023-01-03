@@ -47,7 +47,6 @@ public class MyArrayList<E> implements MyList<E>{
             elementData = grow();
         elementData[size] = element;
         size++;
-        checkOf();
         return true;
     }
     @Override
@@ -59,7 +58,6 @@ public class MyArrayList<E> implements MyList<E>{
         elementData = MyArray.copyOffset(elementData, index);
         elementData[index] = element;
         size++;
-        checkOf();
     }
 
     private Object[] grow() {
@@ -94,8 +92,13 @@ public class MyArrayList<E> implements MyList<E>{
     }
 
     @Override
-    public boolean remove(Object o) {
-        return false;
+    public E remove(int index) {
+        if (index >= size || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        E oldValue = elementData(index);
+        elementData = MyArray.copyNegativeOffset(elementData, index);
+        checkOf();
+        return oldValue;
     }
 
     @Override
