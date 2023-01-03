@@ -38,18 +38,28 @@ public class MyArrayList<E> implements MyList<E>{
     }
 
     public void checkOf(){
-        System.out.println(Arrays.toString(elementData));
-        System.out.println(elementData.length);
-        System.out.println(size);
+        System.out.println("elementData: " + Arrays.toString(elementData));
+        System.out.println("elementData.length: " + elementData.length);
+        System.out.println("size: " + size);
     }
 
     @Override
-    public boolean add(E e) {
+    public void add(E element) {
         if (size == elementData.length)
             elementData = grow();
-        elementData[size] = e;
+        elementData[size] = element;
         size++;
-        return true;
+        checkOf();
+    }
+    @Override
+    public void add(int index, E element) {
+        if (index > size || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        if (size == elementData.length)
+            elementData = grow();
+        elementData[index] = element;
+        size++;
+        checkOf();
     }
 
     private Object[] grow() {
