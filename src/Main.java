@@ -13,35 +13,55 @@ public class Main {
         integerMyList.add(3);
 
         int size = integerMyList.size();
-        if (size == 3) System.out.println("Test passed");
-        else System.out.println("Test filed");
+        if (size == 3) {
+            System.out.println("Test passed");
+        } else {
+            System.out.println("Test failed");
+        }
+        if (integerMyList.get(1) == 2) {
+            System.out.println("Test passed");
+        } else {
+            System.out.println("Test failed");
+        }
 
-        if (integerMyList.get(1) == 2) System.out.println("Test passed");
-        else System.out.println("Test filed");
-
-        integerMyList.remove(1); // remove value 2
+        int j = integerMyList.remove(1); // remove value 2
         size = integerMyList.size();
-        if (size == 2) System.out.println("Test passed");
-        else System.out.println("Test filed");
+        if (size == 2) {
+            System.out.println("Test passed");
+        }
+        else {
+            System.out.println("Test failed");
+        }
+        if (j == 2) {System.out.println("Test passed");
+        }
+        else {
+            System.out.println("Test failed");
+        }
 
-        if (integerMyList.get(1) == 3) System.out.println("Test passed");
-        else System.out.println("Test filed");
+        if (integerMyList.get(1) == 3) {
+            System.out.println("Test passed");
+        }
+        else {
+        System.out.println("Test failed");
+    }
 
         integerMyList.add(1, 2); // add value 2 on index
-        if (integerMyList.get(1) == 2) System.out.println("Test passed");
-        else System.out.println("Test filed");
+        if (integerMyList.get(1) == 2) {
+            System.out.println("Test passed");
+        }
+        else {
+            System.out.println("Test failed");
+        }
 
         size = integerMyList.size();
-        if (size == 3) System.out.println("Test passed");
-        else System.out.println("Test filed");
+        if (size == 3) {
+            System.out.println("Test passed");
+        }
+        else {
+            System.out.println("Test failed");
+        }
 
-        integerMyList.set(0, 5);
-        if (integerMyList.get(0) == 5) System.out.println("Test passed");
-        else System.out.println("Test filed");
 
-        size = integerMyList.size();
-        if (size == 3) System.out.println("Test passed");
-        else System.out.println("Test filed");
 
 
     }

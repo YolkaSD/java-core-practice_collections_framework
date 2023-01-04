@@ -97,7 +97,6 @@ public class MyArrayList<E> implements MyList<E>{
         E oldValue = elementData(index);
         elementData = MyArray.copyNegativeOffset(elementData, index);
         size--;
-        checkOf();
         return oldValue;
     }
 
