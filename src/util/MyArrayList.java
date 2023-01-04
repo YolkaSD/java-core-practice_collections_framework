@@ -15,8 +15,6 @@ public class MyArrayList<E> implements MyList<E>{
     private int size;
 
     //
-    public final int SOFT_MAX_ARRAY_LENGTH = Integer.MAX_VALUE - 8;
-    //
     private static final Object[] EMPTY_ELEMENTDATA = {};
 
     public MyArrayList() {
@@ -49,7 +47,6 @@ public class MyArrayList<E> implements MyList<E>{
             elementData = grow();
         elementData[size] = element;
         size++;
-        checkOf();
         return true;
     }
     @Override
@@ -58,10 +55,9 @@ public class MyArrayList<E> implements MyList<E>{
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         if (size == elementData.length)
             elementData = grow();
-        elementData = MyArray.copyOf(index, elementData);
+        elementData = MyArray.copyOffset(elementData, index);
         elementData[index] = element;
         size++;
-        checkOf();
     }
 
     private Object[] grow() {
@@ -76,17 +72,32 @@ public class MyArrayList<E> implements MyList<E>{
 
     @Override
     public E set(int index, E element) {
-        return null;
+        if (index >= size || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        E oldValue = elementData(index);
+        elementData[index] = element;
+        return oldValue;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        if (index >= size || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        return elementData(index);
+    }
+    @SuppressWarnings("unchecked")
+    private E elementData(int index) {
+        return (E) elementData[index];
     }
 
     @Override
-    public boolean remove(Object o) {
-        return false;
+    public E remove(int index) {
+        if (index >= size || index < 0)
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        E oldValue = elementData(index);
+        elementData = MyArray.copyNegativeOffset(elementData, index);
+        size--;
+        return oldValue;
     }
 
     @Override
