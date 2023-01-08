@@ -1,13 +1,10 @@
-
-import util.MyArrayList;
+import util.MyLinkedList;
 import util.MyList;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        MyList<Integer> integerMyList = new MyArrayList<>();
+        MyList<Integer> integerMyList = new MyLinkedList<>();
         integerMyList.add(1);
         integerMyList.add(2);
         integerMyList.add(3);
@@ -45,24 +42,19 @@ public class Main {
         System.out.println("Test failed");
     }
 
-        integerMyList.add(1, 2); // add value 2 on index
-        if (integerMyList.get(1) == 2) {
+        try {
+            integerMyList.get(-1);
+            System.out.println("Test failed");
+        }catch (IndexOutOfBoundsException e) {
             System.out.println("Test passed");
         }
-        else {
-            System.out.println("Test failed");
-        }
 
-        size = integerMyList.size();
-        if (size == 3) {
+        try {
+            integerMyList.get(120);
+            System.out.println("Test failed");
+        }catch (IndexOutOfBoundsException e) {
             System.out.println("Test passed");
         }
-        else {
-            System.out.println("Test failed");
-        }
-
-
-
 
     }
 }
