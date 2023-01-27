@@ -78,7 +78,11 @@ public class MyBinaryTree<E extends Comparable<E>> implements MyTree<E> {
                     } else {
                         if (parentNode.value.compareTo(e) < 0) {
                             parentNode = parentNode.rightChild;
+                        } else {
+                            parentNode = parentNode.leftChild;
                         }
+                        System.out.println(parentNode);
+                        System.out.println(currentNode);
                         parentNode.value = parentNode.rightChild.value;
                         parentNode.rightChild = null;
                     }
@@ -94,13 +98,13 @@ public class MyBinaryTree<E extends Comparable<E>> implements MyTree<E> {
                         }
                     }
                 } else {
+                    if (root.leftChild == null && root.rightChild == null) {
+                        root = null;
+                    }
                     if (currentNode.value.compareTo(e) > 0 ) {
                         parentNode.rightChild = null;
                     } else {
                         parentNode.leftChild = null;
-                    }
-                    if (root.leftChild == null && root.rightChild == null) {
-                        root = null;
                     }
                 }
                 return true;
@@ -125,7 +129,7 @@ public class MyBinaryTree<E extends Comparable<E>> implements MyTree<E> {
     public void printTree() {
         printTreeWidth();
         printTreeDeep();
-        //printTreeTest();
+        printTreeTest();
     }
 
     private void printTreeWidth(){
