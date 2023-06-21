@@ -49,7 +49,7 @@ public class MyArrayList<E> implements MyList<E>{
         size++;
         return true;
     }
-    /*@Override
+    @Override
     public void add(int index, E element) {
         if (index > size || index < 0)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -58,7 +58,7 @@ public class MyArrayList<E> implements MyList<E>{
         elementData = MyArray.copyOffset(elementData, index);
         elementData[index] = element;
         size++;
-    }*/
+    }
 
     private Object[] grow() {
         if (elementData.length > 0 || elementData != EMPTY_ELEMENTDATA) {

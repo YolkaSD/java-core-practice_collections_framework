@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Objects;
+
 public class MyLinkedList<E> implements MyList<E> {
 
     private int size = 0;
@@ -19,6 +21,32 @@ public class MyLinkedList<E> implements MyList<E> {
             l.next = newNode;
         size++;
         return true;
+    }
+
+    @Override
+    public void add(int index, E element) {
+        Node<E> newNode;
+        checkElementIndex(index);
+        if (index == 0) {
+            newNode = new Node<>(null, element, first);
+            if (Objects.nonNull(first)) {
+                first.prev = newNode;
+            }
+            first = newNode;
+        } else if (index == size) {
+            newNode = new Node<>(last, element, null);
+            if (Objects.nonNull(last)) {
+                last.next = newNode;
+            }
+            last = newNode;
+        } else {
+            Node<E> fNode = node(index - 1);
+            Node<E> lNode = node(index);
+            newNode = new Node<>(fNode, element, lNode);
+            fNode.next = newNode;
+            lNode.prev = newNode;
+        }
+        size++;
     }
 
     @Override
@@ -54,7 +82,7 @@ public class MyLinkedList<E> implements MyList<E> {
     }
 
     private void checkElementIndex(int index) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
     }
